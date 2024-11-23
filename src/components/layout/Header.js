@@ -12,11 +12,11 @@ const Header = ({ children }) => {
   const [books, setBooks] = useState([]);
   return (
     <>
-      <header className='border-b-2'>
+      <header className='border-b-2 px-4'>
         <div className='flex justify-between py-4'>
           <h1 className='logo flex justify-center items-center'>
             <Link href='/'>
-              <Image src='/images/sbook_.png' width={46} height={15} alt='sbook'></Image>
+              <Image src='/images/sbook_.png' width={76} height={25} alt='sbook'></Image>
             </Link>
           </h1>
           <div>

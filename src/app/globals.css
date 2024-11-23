@@ -81,3 +81,6 @@
     font-size: 0.875rem;
   }
 }
+.swiper-wrapper {
+  align-items: end;
+}
