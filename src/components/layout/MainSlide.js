@@ -1,7 +1,7 @@
 'use client';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // swiper/modules로 경로 변경
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import 'swiper/swiper-bundle.css';
 // import 'swiper/css';
@@ -10,29 +10,32 @@ import 'swiper/swiper-bundle.css';
 // import 'swiper/css/autoplay';
 export default function MainSlider() {
   return (
-    <div className='w-full h-[400px]'>
+    <div className='relative w-full mt-5'>
       {' '}
-      {/* 컨테이너 크기 지정 */}
+      {/* 좌우 패딩 추가 */}
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={30}
-        slidesPerView={1}
-        navigation
+        spaceBetween={20}
+        slidesPerView={'auto'}
+        centeredSlides={true} // 중앙 정렬 활성화
+        // loop={true}
         pagination={{ clickable: true }}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
-        className='w-full h-full'
+        className='mySwiper'
       >
-        <SwiperSlide>
-          <div className='w-full h-full bg-gray-200'>Slide 1</div>
+        <SwiperSlide className='!w-[80%]'>
+          {' '}
+          {/* 슬라이드 너비 조정 */}
+          <div className='w-full h-[400px] bg-gray-200 rounded-lg'>Slide 1</div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className='w-full h-full bg-gray-300'>Slide 2</div>
+        <SwiperSlide className='!w-[80%]'>
+          <div className='w-full h-[400px] bg-gray-300 rounded-lg'>Slide 2</div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className='w-full h-full bg-gray-400'>Slide 3</div>
+        <SwiperSlide className='!w-[80%]'>
+          <div className='w-full h-[400px] bg-gray-400 rounded-lg'>Slide 3</div>
         </SwiperSlide>
       </Swiper>
     </div>
