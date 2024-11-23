@@ -35,7 +35,7 @@ const BookSlider = ({ title, books = [], loading = false }) => {
         <h2 className='text-2xl font-bold mb-6'>{title}</h2>
         <Swiper modules={[Autoplay]} spaceBetween={15} slidesPerView='auto' speed={3000} className='!overflow-visible'>
           {books.map((book, index) => (
-            <SwiperSlide key={book.id || index} className='!w-[150px] sm:!w-[200px]'>
+            <SwiperSlide key={`${book.id}-${index}`} className='!w-[150px] sm:!w-[200px]'>
               <div className='bg-white rounded-lg shadow-lg overflow-hidden p-2'>
                 <Image
                   src={book.image}
