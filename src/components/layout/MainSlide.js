@@ -19,7 +19,10 @@ export default function MainSlider() {
         slidesPerView={'auto'}
         centeredSlides={true} // 중앙 정렬 활성화
         // loop={true}
-        pagination={{ clickable: true }}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+        }}
         autoplay={{
           delay: 4000,
           disableOnInteraction: false,
@@ -29,13 +32,16 @@ export default function MainSlider() {
         <SwiperSlide className='!w-[80%]'>
           {' '}
           {/* 슬라이드 너비 조정 */}
-          <div className='w-full h-[400px] bg-gray-200 rounded-lg'>Slide 1</div>
+          <div className='w-full h-[300px] bg-gray-200 rounded-lg'>Slide 1</div>
         </SwiperSlide>
         <SwiperSlide className='!w-[80%]'>
-          <div className='w-full h-[400px] bg-gray-300 rounded-lg'>Slide 2</div>
+          <div className='w-full h-[300px] bg-gray-300 rounded-lg'>Slide 2</div>
         </SwiperSlide>
         <SwiperSlide className='!w-[80%]'>
-          <div className='w-full h-[400px] bg-gray-400 rounded-lg'>Slide 3</div>
+          <div className='w-full h-[300px] bg-gray-400 rounded-lg'>Slide 3</div>
+        </SwiperSlide>
+        <SwiperSlide className='!w-[80%]'>
+          <div className='w-full h-[300px] bg-gray-400 rounded-lg'>Slide 4</div>
         </SwiperSlide>
       </Swiper>
     </div>
