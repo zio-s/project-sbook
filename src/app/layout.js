@@ -2,6 +2,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Script from 'next/script';
 import { Noto_Sans_KR } from 'next/font/google';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -35,7 +36,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div id='wrap'>
-          <div className='inner'>{children}</div>
+          <AuthProvider>{children}</AuthProvider>
         </div>
       </body>
     </html>

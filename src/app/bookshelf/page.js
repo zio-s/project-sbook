@@ -1,39 +1,40 @@
+// pages/bookshelf.js
 'use client';
-import BookList from '@/components/BookList';
-import BookSort from '@/components/BookSort';
-import BookGrid from '@/components/layout/BookGrid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAuth } from '@/firebase/useAuth';
+import { getUserBooks } from '@/utils/bookshelf';
+import BookSlider from '@/components/BookSlider';
 
 export default function Bookshelf() {
-  const [view, setView] = useState('grid');
+  const { user, loading: authLoading } = useAuth();
   const [books, setBooks] = useState([]);
-  const [sort, setSort] = useState('latest'); // sort state 추가
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      if (user) {
+        try {
+          const userBooks = await getUserBooks(user.uid);
+          setBooks(userBooks);
+        } catch (error) {
+          console.error('Error:', error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    if (!authLoading) {
+      fetchBooks();
+    }
+  }, [user, authLoading]);
+
+  if (authLoading) return <div>Loading...</div>;
+  if (!user) return <div>Please login to view your bookshelf</div>;
 
   return (
-    <div className='max-w-6xl mx-auto px-4 py-8'>
-      <div className='flex justify-between items-center mb-6'>
-        {/* 뷰 전환 버튼 */}
-        <div className='flex gap-4'>
-          <button
-            onClick={() => setView('grid')}
-            className={`px-4 py-2 rounded ${view === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
-          >
-            그리드 보기
-          </button>
-          <button
-            onClick={() => setView('list')}
-            className={`px-4 py-2 rounded ${view === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
-          >
-            리스트 보기
-          </button>
-        </div>
-
-        {/* 정렬 옵션 */}
-        <BookSort onSort={setSort} />
-      </div>
-
-      {/* 책 목록 */}
-      {view === 'grid' ? <BookGrid books={books} /> : <BookList books={books} />}
+    <div>
+      <BookSlider title='내 책장' books={books} loading={loading} />
     </div>
   );
 }

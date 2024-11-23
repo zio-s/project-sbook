@@ -1,7 +1,9 @@
-import React from 'react';
+import LoginForm from '@/components/LoginForm';
 
-const loginPage = () => {
-  return <div>loginPage</div>;
-};
-
-export default loginPage;
+export default function LoginPage() {
+  return (
+    <div className='min-h-screen bg-gray-100 py-12'>
+      <LoginForm />
+    </div>
+  );
+}
