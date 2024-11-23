@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div id='wrap' className='p-2'>
+        <div id='wrap'>
           <div className='inner'>{children}</div>
         </div>
       </body>
